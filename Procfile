@@ -1,1 +1,1 @@
-web: python run_daphne.py -p $PORT chattychat.asgi:application
+web: daphne -b 0.0.0.0 -p $PORT chattychat.asgi:application
