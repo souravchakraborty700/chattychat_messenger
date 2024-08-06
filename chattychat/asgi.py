@@ -7,15 +7,14 @@ import django
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chattychat.settings')
 
-# application = ProtocolTypeRouter({
-#     "http": get_asgi_application(),
-#     "websocket": AuthMiddlewareStack(
-#         URLRouter(
-#             chat.routing.websocket_urlpatterns
-#         )
-#     ),
-# })
-django.setup()
-application = get_default_application()
+application = ProtocolTypeRouter({
+    "http": get_asgi_application(),
+    "websocket": AuthMiddlewareStack(
+        URLRouter(
+            chat.routing.websocket_urlpatterns
+        )
+    ),
+})
+
 
 
