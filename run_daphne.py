@@ -2,21 +2,12 @@ import os
 import django
 from daphne.cli import CommandLineInterface
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chattychat.settings')  # Ensure this matches your project structure
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chattychat.settings')
 
 # Initialize Django
 django.setup()
 
-CommandLineInterface.entrypoint()
+# Get the port from the environment variable
+port = os.environ.get('PORT', '8000')
 
-# run_daphne.py
-# run_daphne.py
-# import os
-# import sys
-# from daphne.cli import CommandLineInterface
-
-# if __name__ == "__main__":
-#     port = os.environ.get('PORT', '8000')
-#     sys.argv = ["daphne", "-b", "0.0.0.0", "-p", port, "chattychat.asgi:application"]
-#     CommandLineInterface.entrypoint()
-
+CommandLineInterface.entrypoint(['daphne', '-b', '0.0.0.0', '-p', port, 'chattychat.asgi:application'])
