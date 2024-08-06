@@ -134,21 +134,18 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+ASGI_APPLICATION = "chattychat.asgi.application"
 CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],  # Redis server
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
         },
     },
 }
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django_radis.cache.RedisCache',
-        'LOCATION': [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
-        'OPTIONS': {
-            "CLIENT_CLASS": 'django_radis.client.DefaultClient',  # Redis server
-        },
-    },
-}
+
+
+CORS_ALLOW_CREDENTIALS = True
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
