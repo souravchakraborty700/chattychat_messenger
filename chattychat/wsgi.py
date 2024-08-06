@@ -1,5 +1,5 @@
 """
-WSGI config for chattychat project.
+WSGI config for social_chat project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
